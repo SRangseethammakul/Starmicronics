@@ -83,8 +83,9 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('dashboard.showData')}}" class="nav-link">
-                                <i class="nav-icon fas fa-table"></i>Dashboard</a>
+                                <i class="nav-icon fas fa-table"></i>Data Table</a>
                         </li>
+                        @role('Admin|Staff')
                         <li class="nav-item">
                             <a href="{{ route('export.excel')}}" class="nav-link">
                                 <i class="nav-icon fas fa-file-excel"></i>Import Excel</a>
@@ -93,6 +94,7 @@
                             <a href="{{ route('file-export')}}" class="nav-link">
                                 <i class="nav-icon fas fa-file-excel"></i>Export Excel</a>
                         </li>
+                        @endrole
                         @role('Admin')
                         <li class="nav-item">
                             <a href="{{ route('usermanagement.index')}}" class="nav-link">
@@ -102,7 +104,6 @@
                             <a href="{{ route('role.index')}}" class="nav-link">
                                 <i class="nav-icon fas fa-user-cog"></i> Role</a>
                         </li>
-
                         @endrole
                     </ul>
                 </nav>
