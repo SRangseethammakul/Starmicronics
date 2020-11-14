@@ -54,7 +54,7 @@ Route::group(['middleware' => 'auth'], function () {
         });
     });
 
-    Route::group(['middleware' => ['role:Staff']], function () {
+    Route::group(['middleware' => ['role:Admin|Staff']], function () {
         Route::post('file-import', 'AjaxController@fileImport')->name('file-import');
         Route::get('file-import-export', 'HomeController@fileImportExport')->name('export.excel');
         Route::get('file-export', 'AjaxController@fileExport')->name('file-export');
