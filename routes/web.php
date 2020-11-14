@@ -36,7 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/showData', 'DashboardController@showData')->name('dashboard.showData');
     });
 
-    // Route::group(['middleware' => ['role:Admin']], function () {
+    Route::group(['middleware' => ['role:Admin']], function () {
         Route::group(['prefix' => 'usermanagement'], function () {
             Route::get('/', 'UserManagementController@index')->name('usermanagement.index');
             Route::get('/show', 'UserManagementController@show')->name('usermanagement.show');
@@ -52,7 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/create', 'RoleManagementController@create')->name('role.create');
             Route::post('/store', 'RoleManagementController@store')->name('role.store');
         });
-    // });
+    });
 
     Route::group(['middleware' => ['role:Staff']], function () {
         Route::post('file-import', 'AjaxController@fileImport')->name('file-import');
