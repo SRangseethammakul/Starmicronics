@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">ประเภทร้านค้า</h1>
+                    <h1 class="m-0 text-dark">Data</h1>
                 </div>
             </div>
             <!-- /.row -->
@@ -17,8 +17,8 @@
         <div class="container-fluid">
             <div class="container">
                 <div class="row">
-                    <div class="col-auto mr-auto"><h3>ประเภทร้านค้า</h3></div>
-                    <div class="col-auto"><a href="{{ route('dashboard.index')}}"> <button type="button" class="btn btn-dark">เพิ่มประเภทร้านค้า</button> </a></div>
+                    <div class="col-auto mr-auto"><h3>Data</h3></div>
+                    {{-- <div class="col-auto"><a href="{{ route('dashboard.index')}}"> <button type="button" class="btn btn-dark">เพิ่มประเภทร้านค้า</button> </a></div> --}}
                 </div>
             </div>
             <div class="row">
@@ -26,15 +26,15 @@
                     <table class="table">
                         <thead>
                             <tr>
-                            <th scope="col">รหัสประเภทร้านค้า</th>
-                            <th scope="col">หมวดประเภทร้านค้า</th>
-                            <th scope="col">หมวดประเภทร้านค้า1</th>
-                            <th scope="col">หมวดประเภทร้านค้า2</th>
-                            <th scope="col">หมวดประเภทร้านค้า3</th>
-                            <th scope="col">หมวดประเภทร้านค้า4</th>
-                            <th scope="col">หมวดประเภทร้านค้า5</th>
-                            <th scope="col">หมวดประเภทร้านค้า6</th>
-                            <th scope="col">หมวดประเภทร้านค้า7</th>
+                            <th scope="col"></th>
+                            <th scope="col">Serial Number</th>
+                            <th scope="col">Good Group</th>
+                            <th scope="col">Good Code</th>
+                            <th scope="col">Good Description</th>
+                            <th scope="col">Customer</th>
+                            <th scope="col">Shipped Date</th>
+                            <th scope="col">EXP Date</th>
+                            <th scope="col">Warranty</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -27,9 +27,27 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
                 </li>
-
-
             </ul>
+                <ul class="navbar-nav ml-auto">
+                    <!-- Authentication Links -->
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                </ul>
 
             <!-- Right navbar links -->
 
@@ -49,7 +67,7 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="info">
-                        <a href="{{ route('role.create')}}" class="d-block">{{auth()->user()->name}}</a>
+                        <a href="{{ route('dashboard.index')}}" class="d-block">{{auth()->user()->name}}</a>
                     </div>
                 </div>
 
@@ -62,6 +80,10 @@
                         <li class="nav-item">
                             <a href="{{ route('dashboard.index')}}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.showData')}}" class="nav-link">
+                                <i class="nav-icon fas fa-table"></i>Dashboard</a>
                         </li>
                         @role('Admin')
 
@@ -78,12 +100,6 @@
                                 <i class="nav-icon fas fa-file-excel"></i>Import Excel</a>
                         </li>
                         @endrole
-                        <li class="nav-item">
-                            <a href="{{ route('profile.edit')}}" class="nav-link">
-                                <i class="nav-icon fas fa-user-shield"></i> Change Password</a>
-                        </li>
-
-
                     </ul>
                 </nav>
 

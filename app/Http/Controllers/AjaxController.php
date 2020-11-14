@@ -15,10 +15,6 @@ use DB;
 
 class AjaxController extends Controller
 {
-    public function search(){
-        $test = warranty_system::groupBy('customer')->get();
-        dd($test);
-    }
     public function fileImport(Request $request) 
     {
         Excel::import(new warranty_SystemImport, $request->file('file')->store('temp'));
