@@ -14,10 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function () {
-    return view('auth.login');
-});
-
+Route::get('/', 'HomeController@index');
 
 // Route::post('file-import', 'HomeController@fileImport')->name('file-import');
 // Route::get('file-export', 'HomeController@fileExport')->name('file-export');
