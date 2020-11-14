@@ -79,7 +79,8 @@ class UserManagementController extends Controller
         $user = User::find($id);
         $user_role = DB::table('model_has_roles')->where('model_id',$id)->first();
         $roles = Role::all();
-        $user_role = Role::where('id',$user_role->role_id)->first();
+        // $user_role = Role::where('id',$user_role->role_id)->first();
+        $user_role = null;
         return view('usermanagement.edit',compact('user','roles','user_role','user_role'));
     }
 
