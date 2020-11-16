@@ -23,13 +23,24 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $datas = warranty_system::where('customer', 'CLEXPERT')->where('customer', 'CLEXPERT')->where('serial_number', 'not like', '%NO INFO%')->get();
         return view('dashboard');
     }
 
-    public function showData()
+    public function showData(Request $request)
     {
-        $datas = warranty_system::where('customer', 'CLEXPERT')->where('customer', 'CLEXPERT')->where('serial_number', 'not like', '%NO INFO%')->get();
+        $datas = warranty_system::where('customer', 'CLEXPERT')->where('serial_number', 'not like', '%NO INFO%');
+        // if($request->customer){
+        //     $datas = $datas->where('customer', $request->customer);
+        // }
+        if($request->warranty){
+            $datas = $datas->where('Warranty', 'like', '%' . $request->warranty . '%');
+        }
+        if($request->start_date && $request->end_date){
+            $start_date = Carbon::createFromFormat('d/m/Y', $request->start_date);
+            $end_date = Carbon::createFromFormat('d/m/Y', $request->end_date);
+            $datas->where('shipped_date', '>=', $start_date->format('Y-m-d'))->where('shipped_date', '<=', $end_date->addDays(1)->format('Y-m-d'));
+        }
+        $datas = $datas->get();
         return view('showdata.index',[
             'datas' => $datas
         ]);
