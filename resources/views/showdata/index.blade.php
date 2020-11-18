@@ -118,6 +118,7 @@
     $('#btn-export-xlsx').on('click', function() {
         var checkarr = '';
         var countar = 0;
+        debugger;
         $('.check-boxes').each(function () {
             var $this = $(this),
                 id = $this.data('id')
