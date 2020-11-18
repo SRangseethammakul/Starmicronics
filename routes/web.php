@@ -25,6 +25,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('test', 'AjaxController@test')->name('test');
 
     Route::group(['prefix' => 'dashboard'], function () {
         Route::get('/', 'DashboardController@index')->name('dashboard.index');

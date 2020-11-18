@@ -18,7 +18,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-auto mr-auto">
-                    <h3>Data</h3>
+                    <button type="button" id="btn-export-xlsx" class="btn btn-dark">Excel with checkbox</button>
                 </div>
                 <div class="col-auto ml-auto">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Filter</button>
@@ -44,7 +44,7 @@
                     <tbody>
                         @foreach ($datas as $key => $item)
                         <tr>
-                            <th scope="row">{{ ++$key }}</th>
+                            <td><input type="checkbox" class="check-boxes" name="input[]" data-id="{{ $item->id }}"></td>
                             <td>{{ $item->serial_number }}</td>
                             <td>{{ $item->good_group }}</td>
                             <td>{{ $item->good_code }}</td>
@@ -114,6 +114,24 @@
         dateFormat: 'dd/mm/yy',
         buttonImageOnly: true,
         buttonText: "Select date"
+    });
+    $('#btn-export-xlsx').on('click', function() {
+        var checkarr = '';
+        var countar = 0;
+        $('.check-boxes').each(function () {
+            var $this = $(this),
+                id = $this.data('id')
+            if ($(this).prop('checked')) {
+                if(countar == 0){
+                    checkarr = checkarr + '&check='+id;
+                }
+                checkarr = checkarr + ','+id;
+                countar ++;
+            }
+            
+        });
+        
+        window.location.href="{{ route('test')}}"+ "?" + checkarr;
     });
 </script>
 @if(session('feedback'))
