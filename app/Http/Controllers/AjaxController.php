@@ -27,7 +27,7 @@ class AjaxController extends Controller
     {
 
         Excel::import(new warranty_SystemImport, $request->file('file')->store('temp'));
-        return redirect()->route('role.index')->with('feedback' ,'บันทึกข้อมูลเรียบร้อยแล้ว');
+        return redirect()->route('dashboard.index')->with('feedback' ,'บันทึกข้อมูลเรียบร้อยแล้ว');
     }
 
     public function fileExport() 
@@ -37,7 +37,6 @@ class AjaxController extends Controller
 
     public function test(Request $request){
         $check = explode(",",$request->check);
-        dd($check);
         return Excel::download(new warranty_SystemExport_id($check), 'warranty_systems-id-'.time().'.xlsx');
     }
 }

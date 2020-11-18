@@ -121,7 +121,6 @@
         $('.check-boxes').each(function () {
             var $this = $(this),
                 id = $this.data('id')
-                console.log(id);
             if ($(this).prop('checked')) {
                 if(countar == 0){
                     checkarr = checkarr + 'check='+id;
