@@ -37,6 +37,7 @@ class AjaxController extends Controller
 
     public function test(Request $request){
         $check = explode(",",$request->check);
+        dd($check);
         return Excel::download(new warranty_SystemExport_id($check), 'warranty_systems-id-'.time().'.xlsx');
     }
 }
