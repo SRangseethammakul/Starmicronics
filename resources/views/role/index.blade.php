@@ -1,30 +1,17 @@
 @extends('layouts.backend')
 @section('content')
     <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Role</h1>
-                </div>
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
+    <h1 class="m-0 text-dark">Role</h1>
     </div>
     <!-- /.content-header -->
-    <br>
     <section class="content" id="app">
         <div class="container-fluid">
-            <div class="container">
-                <div class="row">
-                    <div class="col-auto mr-auto"><h3>Role</h3></div>
-                    <div class="col-auto"><a href="{{ route('role.create')}}"> <button type="button" class="btn btn-dark">Role</button> </a></div>
+        <div class="row">
+                    <div class="col-xl-2 col-md-3 col-12 m-b-15"><a href="{{ route('role.create')}}"> <button type="button" class="btn btn-dark btn-full-w">Role</button> </a></div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="card-body">
-                    <table class="table">
+                <div class="card-body table-responsive">
+                    <table class="table table-bordered table-hover dataTable dtr-inline">
                         <thead>
                             <tr>
                             <th scope="col">Id</th>
@@ -43,7 +30,6 @@
                         </tbody>
                         </table>
                 </div>
-            </div>
             {{-- end row --}}
         </div>
     </section>

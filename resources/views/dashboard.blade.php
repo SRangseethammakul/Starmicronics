@@ -2,17 +2,12 @@
 @section('content')
 <!-- Content Header (Page header) -->
 <div class="content-header">
+<h1 class="m-0 text-dark">Dashboard</h1>
+</div>
+
+<section class="content" id="app">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-            </div>
-        </div>
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Dashboard</h1>
-            </div>
-        </div>
-        <div class="row">
+    <div class="row">
             <div class="col-md-6">
                 <!-- DONUT CHART -->
                 <div class="card card-danger">
@@ -38,10 +33,10 @@
                     <div class="card-header">
                         <h3 class="card-title">CLEXPERT By Year</h3>
                         <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                            <button type="button" class="btn btn-tool txt-white" data-card-widget="collapse"><i
                                     class="fa fa-minus"></i>
                             </button>
-                            <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                            <button type="button" class="btn btn-tool txt-white" data-card-widget="remove"><i
                                     class="fa fa-times"></i></button>
                         </div>
                     </div>
@@ -53,13 +48,6 @@
             </div>
         </div>
         <!-- /.row -->
-    </div>
-    <!-- /.container-fluid -->
-</div>
-<!-- /.content-header -->
-<br>
-<section class="content" id="app">
-    <div class="container mt-5">
     </div>
 </section>
 @endsection

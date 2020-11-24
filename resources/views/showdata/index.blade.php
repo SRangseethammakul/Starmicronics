@@ -1,33 +1,27 @@
 @extends('layouts.backend')
 @section('content')
 <div class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Data</h1>
-            </div>
-        </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.container-fluid -->
+<h1 class="m-0 text-dark">Data Table</h1>
 </div>
 <!-- /.content-header -->
-<br>
+
 <section class="content" id="app">
     <div class="container-fluid">
-        <div class="container">
+        <div class="m-b-15">
             <div class="row">
                 <div class="col-auto mr-auto">
                     <button type="button" id="btn-export-xlsx" class="btn btn-dark">Excel with checkbox</button>
                 </div>
                 <div class="col-auto ml-auto">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Filter</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> <i
+                            class="fas fa-filter"></i> Filter</button>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="card-body">
-                <table class="table">
+
+        <div>
+            <div class="card-body table-responsive">
+                <table class="table table-bordered table-hover dataTable dtr-inline">
                     <thead>
                         <tr>
                             <th scope="col"></th>
@@ -44,7 +38,8 @@
                     <tbody>
                         @foreach ($datas as $key => $item)
                         <tr>
-                            <td><input type="checkbox" class="check-boxes" name="input[]" data-id="{{ $item->id }}"></td>
+                            <td><input type="checkbox" class="check-boxes" name="input[]" data-id="{{ $item->id }}">
+                            </td>
                             <td>{{ $item->serial_number }}</td>
                             <td>{{ $item->good_group }}</td>
                             <td>{{ $item->good_code }}</td>
@@ -107,41 +102,41 @@
 @endsection
 @section('footerscript')
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('table').DataTable();
-    });
-    $(".datepicker").datepicker({
-        dateFormat: 'dd/mm/yy',
-        buttonImageOnly: true,
-        buttonText: "Select date"
-    });
-    $('#btn-export-xlsx').on('click', function() {
-        var checkarr = '';
-        var countar = 0;
-        $('.check-boxes').each(function () {
-            var $this = $(this),
-                id = $this.data('id')
-            if ($(this).prop('checked')) {
-                if(countar == 0){
-                    checkarr = checkarr + 'check='+id;
-                }
-                checkarr = checkarr + ','+id;
-                countar ++;
+$(document).ready(function() {
+    $('table').DataTable();
+});
+$(".datepicker").datepicker({
+    dateFormat: 'dd/mm/yy',
+    buttonImageOnly: true,
+    buttonText: "Select date"
+});
+$('#btn-export-xlsx').on('click', function() {
+    var checkarr = '';
+    var countar = 0;
+    $('.check-boxes').each(function() {
+        var $this = $(this),
+            id = $this.data('id')
+        if ($(this).prop('checked')) {
+            if (countar == 0) {
+                checkarr = checkarr + 'check=' + id;
             }
-            
-        });
-        
-        window.location.href="{{ route('test')}}"+ "?" + checkarr;
+            checkarr = checkarr + ',' + id;
+            countar++;
+        }
+
     });
+
+    window.location.href = "{{ route('test')}}" + "?" + checkarr;
+});
 </script>
 @if(session('feedback'))
 <script>
-    Swal.fire(
-        '{{ session('feedback')}}', //
-        'You clicked the button!',
-        'success'
-    );
-
+Swal.fire(
+    '{{ session('
+    feedback ')}}', //
+    'You clicked the button!',
+    'success'
+);
 </script>
 @endif
 @endsection
