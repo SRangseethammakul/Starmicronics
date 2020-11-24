@@ -6,9 +6,9 @@
     <!-- /.content-header -->
     <section class="content" id="app">
         <div class="container-fluid">
-        <div class="row">
-                    <div class="col-xl-2 col-md-3 col-12 m-b-15"><a href="{{ route('role.create')}}"> <button type="button" class="btn btn-dark btn-full-w">Role</button> </a></div>
-                </div>
+        {{-- <div class="row">
+            <div class="col-xl-2 col-md-3 col-12 m-b-15"><a href="{{ route('role.create')}}"> <button type="button" class="btn btn-dark btn-full-w">Role</button> </a></div>
+        </div> --}}
 
                 <div class="card-body table-responsive">
                     <table class="table table-bordered table-hover dataTable dtr-inline">

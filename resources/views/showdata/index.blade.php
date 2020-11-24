@@ -37,18 +37,20 @@
                     </thead>
                     <tbody>
                         @foreach ($datas as $key => $item)
+                        @foreach ($item as $m)
                         <tr>
-                            <td><input type="checkbox" class="check-boxes" name="input[]" data-id="{{ $item->id }}">
+                            <td><input type="checkbox" class="check-boxes" name="input[]" data-id="{{ $m->id }}">
                             </td>
-                            <td>{{ $item->serial_number }}</td>
-                            <td>{{ $item->good_group }}</td>
-                            <td>{{ $item->good_code }}</td>
-                            <td>{{ $item->good_description }}</td>
-                            <td>{{ $item->customer }}</td>
-                            <td>{{ $item->shipped_date }}</td>
-                            <td>{{ $item->expired_date }}</td>
-                            <td>{{ $item->Warranty }}</td>
-                        </tr>
+                            <td>{{ $m->serial_number }}</td>
+                            <td>{{ $m->good_group }}</td>
+                            <td>{{ $m->good_code }}</td>
+                            <td>{{ $m->good_description }}</td>
+                            <td>{{ $m->customer }}</td>
+                            <td>{{ $m->shipped_date }}</td>
+                            <td>{{ $m->expired_date }}</td>
+                            <td>{{ $m->Warranty }}</td>
+                        </tr>    
+                        @endforeach
                         @endforeach
                     </tbody>
                 </table>

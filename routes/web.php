@@ -45,9 +45,9 @@ Route::group(['middleware' => 'auth'], function () {
         });
         Route::group(['prefix' => 'role'], function () {
             Route::get('/', 'RoleManagementController@index')->name('role.index');
-            Route::get('/show', 'RoleManagementController@show')->name('role.show');
-            Route::get('/create', 'RoleManagementController@create')->name('role.create');
-            Route::post('/store', 'RoleManagementController@store')->name('role.store');
+            // Route::get('/show', 'RoleManagementController@show')->name('role.show');
+            // Route::get('/create', 'RoleManagementController@create')->name('role.create');
+            // Route::post('/store', 'RoleManagementController@store')->name('role.store');
         });
     });
 
