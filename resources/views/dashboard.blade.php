@@ -131,6 +131,14 @@
             }
         });
     });
-
 </script>
+@if(session('feedback'))
+<script>
+    Swal.fire(
+        '{{ session('feedback')}}', //
+        'You clicked the button!',
+        'success'
+    )
+</script>
+@endif
 @endsection
