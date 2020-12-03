@@ -12,6 +12,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\warranty_SystemImport;
 use App\Exports\warranty_SystemExport;
 use App\Exports\warranty_SystemExport_id;
+use Carbon\Carbon;
 use DB;
 
 class AjaxController extends Controller
@@ -32,11 +33,13 @@ class AjaxController extends Controller
 
     public function fileExport() 
     {
-        return Excel::download(new warranty_SystemExport, 'warranty_systems-'.time().'.xlsx');
+        $current = Carbon::now()->format('Ymd');
+        return Excel::download(new warranty_SystemExport, 'warranty_systems_'.$current.'.xlsx');
     }
 
     public function test(Request $request){
         $check = explode(",",$request->check);
-        return Excel::download(new warranty_SystemExport_id($check), 'warranty_systems-id-'.time().'.xlsx');
+        $current = Carbon::now()->format('Ymd');
+        return Excel::download(new warranty_SystemExport_id($check), 'warranty_systems-id_'.$current.'.xlsx');
     }
 }

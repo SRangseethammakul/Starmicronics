@@ -10,7 +10,13 @@
         <div class="m-b-15">
             <div class="row">
                 <div class="col-auto mr-auto">
-                    <button type="button" id="btn-export-xlsx" class="btn btn-dark">Excel with checkbox</button>
+                    {{-- <button type="button" id="btn-export-xlsx" class="btn btn-dark">Excel with checkbox</button> --}}
+                    <a href="{{ route('export.excel')}}">
+                        <button type="button" id="btn-export-xlsx" class="btn btn-dark">Import Excel</button>
+                    </a>
+                    <a href="{{ route('file-export')}}">
+                        <button type="button" id="btn-export-xlsx" class="btn btn-dark">Export Excel</button>
+                    </a>
                 </div>
                 <div class="col-auto ml-auto">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> <i
@@ -104,32 +110,38 @@
 @endsection
 @section('footerscript')
 <script type="text/javascript">
-$(document).ready(function() {
-    $('table').DataTable();
-});
-$(".datepicker").datepicker({
-    dateFormat: 'dd/mm/yy',
-    buttonImageOnly: true,
-    buttonText: "Select date"
-});
-$('#btn-export-xlsx').on('click', function() {
-    var checkarr = '';
-    var countar = 0;
-    $('.check-boxes').each(function() {
-        var $this = $(this),
-            id = $this.data('id')
-        if ($(this).prop('checked')) {
-            if (countar == 0) {
-                checkarr = checkarr + 'check=' + id;
+    $(document).ready(function() {
+        $('table').DataTable({
+            "aLengthMenu": [[20, 50, 100], [20, 50, 100]],
+            "iDisplayLength": 20,
+            "language": {
+                "info": "Showing _START_ to _END_ total _TOTAL_",
             }
-            checkarr = checkarr + ',' + id;
-            countar++;
-        }
-
+        });
     });
+    $(".datepicker").datepicker({
+        dateFormat: 'dd/mm/yy',
+        buttonImageOnly: true,
+        buttonText: "Select date"
+    });
+    $('#btn-export-xlsx').on('click', function() {
+        var checkarr = '';
+        var countar = 0;
+        $('.check-boxes').each(function() {
+            var $this = $(this),
+                id = $this.data('id')
+            if ($(this).prop('checked')) {
+                if (countar == 0) {
+                    checkarr = checkarr + 'check=' + id;
+                }
+                checkarr = checkarr + ',' + id;
+                countar++;
+            }
 
-    window.location.href = "{{ route('test')}}" + "?" + checkarr;
-});
+        });
+
+        window.location.href = "{{ route('test')}}" + "?" + checkarr;
+    });
 </script>
 @if(session('feedback'))
 <script>
