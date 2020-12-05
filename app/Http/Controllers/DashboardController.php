@@ -26,6 +26,7 @@ class DashboardController extends Controller
         // $datas = warranty_system::where('serial_number', 'not like', '%NO INFO%')->groupBy('shipped_date')->get();
         $years = [];
         foreach(range(date('Y')-10, date('Y')) as $y){
+            dd($y);
             $years[] = $y; 
         }
         return view('dashboard',[
