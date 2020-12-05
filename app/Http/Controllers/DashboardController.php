@@ -23,15 +23,25 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        // $datas = warranty_system::where('serial_number', 'not like', '%NO INFO%')->groupBy('shipped_date')->get();
+        $years = [];
+        foreach(range(date('Y')-10, date('Y')) as $y){
+            $years[] = $y; 
+        }
+        return view('dashboard',[
+            'years' => $years
+        ]);
     }
 
     public function showData(Request $request)
     {
-        $datas = warranty_system::where('customer', 'CLEXPERT')->where('serial_number', 'not like', '%NO INFO%');
-        // if($request->customer){
-        //     $datas = $datas->where('customer', $request->customer);
-        // }
+        $datas = warranty_system::where('serial_number', 'not like', '%NO INFO%');
+        $customers = DB::select("SELECT * FROM `warranty_systems` GROUP BY customer");
+        if($request->customer){
+            $datas = $datas->where('customer', $request->customer);
+        }else{
+            $datas = $datas->where('customer', 'CLEXPERT');
+        }
         if($request->warranty){
             $datas = $datas->where('Warranty', 'like', '%' . $request->warranty . '%');
         }
@@ -42,7 +52,8 @@ class DashboardController extends Controller
         }
         $datas = $datas->get()->chunk(300);
         return view('showdata.index',[
-            'datas' => $datas
+            'datas' => $datas,
+            'customers' => $customers
         ]);
     }
 
@@ -113,13 +124,17 @@ class DashboardController extends Controller
     }
 
     public function getCount(Request $request){
+        $month = $request->month;
         $i_count = 0;
         $data = [];
-        $clexpert_rawData = warranty_system::where('customer', 'CLEXPERT')->groupBy('good_group')->get();
+        $clexpert_rawData = warranty_system::where('customer', 'CLEXPERT')->groupBy('good_group');
+        if($month){
+            $clexpert_rawData = $clexpert_rawData->whereMonth('shipped_date', '=', $month);
+        }
+        $clexpert_rawData = $clexpert_rawData->get();
         foreach($clexpert_rawData as $key => $item){
-            $counts = warranty_system::whereMonth(
-                'shipped_date', '=', Carbon::now()->subMonth()->month
-            )->where('good_group', $item->good_group)->count();
+            $counts = warranty_system::where('good_group', $item->good_group);
+            $counts = $counts->count();
             $data[] = [
                 'number' => $counts,
                 'name' => $item->good_group

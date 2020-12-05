@@ -81,6 +81,14 @@
                     action="{{ route('dashboard.showData') }}" method="GET">
                     <div class="setings-item">
                         <div class="form-group">
+                            <label for="customer">Select Customer</label>
+                            <select class="form-control" id="customer" name="customer">
+                                @foreach ($customers as $customer)
+                                    <option value="{{$customer->customer}}">{{$customer->customer}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="warranty">Select Warranty</label>
                             <select class="form-control" id="warranty" name="warranty">
                                 <option value="">Select Warranty</option>

@@ -12,6 +12,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    @yield('contentcss')
 
     {{-- This page and all of the switch buttons shown are running on Bootstrap 4.3 --}}
     {{-- <link rel="stylesheet" href="/css/bootstrap4-toggle-3.6.1/bootstrap4-toggle.css"> --}}
