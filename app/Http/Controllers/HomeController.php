@@ -27,7 +27,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $years = [];
+        foreach(range(date('Y')-10, date('Y')) as $y){
+            $years[] = $y; 
+        }
+        return view('dashboard',[
+            'years' => $years
+        ]);
     }
     public function fileImportExport()
     {
