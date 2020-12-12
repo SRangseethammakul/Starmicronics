@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\warranty_system;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
 class warranty_SystemExport implements FromCollection
@@ -19,6 +20,11 @@ class warranty_SystemExport implements FromCollection
     }
     public function collection()
     {
-        return warranty_system::all();
+        $collection = warranty_system::get();
+        $collection->map(function ($item, $key) {
+            $item->serial_number = "'" . $item->serial_number;
+            return $item;
+        });
+        return $collection;
     }
 }
