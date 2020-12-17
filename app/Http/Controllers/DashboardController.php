@@ -283,6 +283,152 @@ class DashboardController extends Controller
             'dataTotal' => $data_total,
             'dataAll' => $data_all
         ]);
-        
+    }
+
+    public function dataAll(Request $request){
+        $dataAll = [];
+        $clexpert_rawDataAll = warranty_system::groupBy('good_group');
+        if($request->all_year){
+            $clexpert_rawDataAll = $clexpert_rawDataAll->whereYear('shipped_date', '=', (int)$request->all_year);
+        }
+        $clexpert_rawDataAll = $clexpert_rawDataAll->get();
+        foreach($clexpert_rawDataAll as $key => $item){
+            $counts = warranty_system::where('good_group', $item->good_group);
+            $counts = $counts->count();
+            $dataAll[] = [
+                'number' => $counts,
+                'name' => $item->good_group
+            ];
+        }
+        $data_all = [];
+        $count_max = 0;
+        $array = collect($dataAll)->sortBy('number')->reverse()->toArray();
+        foreach($array as $key => $item){
+            if($key < 5){
+                $data_all [] = [
+                    'number' => $item['number'],
+                    'name' => $item['name']
+                ];
+            }else{
+                $count_max = $count_max + $item['number'];
+            }
+        }
+        $data_all[] = [
+            'number' => $count_max,
+            'name' => 'other'
+        ];
+        return response()->json(['status' => 1, 
+            'dataAll' => $data_all
+        ]);
+    }
+
+    public function dataTotal(Request $request){
+        $total_rawData_CLEXPERT = warranty_system::where('serial_number', 'not like', '%NO INFO%')->where('customer', 'like', '%CLEXPERT%');
+        $total_rawData_NEC = warranty_system::where('serial_number', 'not like', '%NO INFO%')->where('customer', 'like', '%NEC%');
+        $total_rawData_RADIANT = warranty_system::where('serial_number', 'not like', '%NO INFO%')->where('customer', 'like', '%RADIANT%');
+        if($request->total_month){
+            $total_rawData_CLEXPERT = $total_rawData_CLEXPERT->whereMonth('shipped_date', '=', (int)$request->total_month);
+            $total_rawData_NEC = $total_rawData_NEC->whereMonth('shipped_date', '=', (int)$request->total_month);
+            $total_rawData_RADIANT = $total_rawData_RADIANT->whereMonth('shipped_date', '=', (int)$request->total_month);
+        }
+        if($request->total_year){
+            $total_rawData_CLEXPERT = $total_rawData_CLEXPERT->whereYear('shipped_date', '=', (int)$request->total_year);
+            $total_rawData_NEC = $total_rawData_NEC->whereYear('shipped_date', '=', (int)$request->total_year);
+            $total_rawData_RADIANT = $total_rawData_RADIANT->whereYear('shipped_date', '=', (int)$request->total_year);
+        }
+        $data_total = [
+            'CLEXPERT' => $total_rawData_CLEXPERT->count(),
+            'NEC' => $total_rawData_NEC->count(),           
+            'RADIANT' => $total_rawData_RADIANT->count()
+        ];
+        return response()->json(['status' => 1, 
+            'dataTotal' => $data_total
+        ]);
+    }
+
+    public function dataClexpert(Request $request){
+        $month = $request->month;
+        $year = $request->year;
+        $i_count = 0;
+        $data = [];
+        $clexpert_rawData = warranty_system::where('customer', 'CLEXPERT');
+        if($month){
+            $clexpert_rawData = $clexpert_rawData->whereMonth('shipped_date', '=', (int)$month);
+        }
+        if($year){
+            $clexpert_rawData = $clexpert_rawData->whereYear('shipped_date', '=', (int)$year);
+        }
+        $clexpert_rawData = $clexpert_rawData->groupBy('good_group')->get();
+        foreach($clexpert_rawData as $key => $item){
+            $meta_data = warranty_system::where('customer', 'CLEXPERT');
+            if($month){
+                $meta_data = $meta_data->whereMonth('shipped_date', '=', (int)$month);
+            }
+            if($year){
+                $meta_data = $meta_data->whereYear('shipped_date', '=', (int)$year);
+            }
+            $counts = $meta_data->where('good_group', $item->good_group)->count();
+            $i_count++;
+            $data[] = [
+                'number' => $counts,
+                'name' => $item->good_group
+            ];
+        }
+        $data_clexpert = [];
+        $count_max = 0;
+        $array = collect($data)->sortBy('number')->reverse()->toArray();
+        foreach($array as $key => $item){
+            if($key < 5){
+                $data_clexpert [] = [
+                    'number' => $item['number'],
+                    'name' => $item['name']
+                ];
+            }else{
+                $count_max = $count_max + $item['number'];
+            }
+        }
+        $data_clexpert[] = [
+            'number' => $count_max,
+            'name' => 'other'
+        ];
+        return response()->json(['status' => 1, 
+            'CLEXPERT' => $data_clexpert
+        ]);
+    }
+
+    public function dataClexpertYear(Request $request){
+        $Clexpert_Year_rawData = warranty_system::where('customer', 'CLEXPERT')->groupBy('good_group');
+        if($request->clexprtYear){
+            $Clexpert_Year_rawData = $Clexpert_Year_rawData->whereYear('shipped_date', '=', (int)$request->clexprtYear);
+        }
+        $Clexpert_Year_rawData = $Clexpert_Year_rawData->get(); 
+        $data = array();
+        foreach($Clexpert_Year_rawData as $key => $item){
+            $counts = warranty_system::where('good_group', $item->good_group)->count();
+            $data[] = [
+                'number' => $counts,
+                'name' => $item->good_group
+            ];
+        }
+        $data_clexpert_year = [];
+        $count_max = 0;
+        $array = collect($data)->sortBy('number')->reverse()->toArray();
+        foreach($array as $key => $item){
+            if($key < 4){
+                $data_clexpert_year [] = [
+                    'number' => $item['number'],
+                    'name' => $item['name']
+                ];
+            }else{
+                $count_max = $count_max + $item['number'];
+            }
+        }
+        $data_clexpert_year[] = [
+            'number' => $count_max,
+            'name' => 'other'
+        ];
+        return response()->json(['status' => 1, 
+            'ClexpertYear' => $data_clexpert_year, 
+        ]);
     }
 }

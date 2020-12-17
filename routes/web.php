@@ -62,4 +62,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/change-password', 'ProfileController@changePassword')->name('profile.changePassword');
     });
 
+    Route::group(['prefix' => 'callData'], function () {
+        Route::get('/dataAll', 'DashboardController@dataAll')->name('calldata.dataAll');
+        Route::get('/dataTotal', 'DashboardController@dataTotal')->name('calldata.dataTotal');
+        Route::get('/dataClexpert', 'DashboardController@dataClexpert')->name('calldata.dataClexpert');
+        Route::get('/dataClexpertYear', 'DashboardController@dataClexpertYear')->name('calldata.dataClexpertYear');
+    });
+
 });
