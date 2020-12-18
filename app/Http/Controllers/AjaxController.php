@@ -26,7 +26,9 @@ class AjaxController extends Controller
     }
     public function fileImport(Request $request) 
     {
-
+        $request->validate([
+            'file' => 'required|file|mimes:xls,xlsx'
+        ]);
         Excel::import(new warranty_SystemImport, $request->file('file')->store('temp'));
         return redirect()->route('dashboard.index')->with('feedback' ,'บันทึกข้อมูลเรียบร้อยแล้ว');
     }
