@@ -41,6 +41,7 @@ class warranty_SystemImport implements ToModel, WithValidation
     {
         return [
             '8' => 'required|date_format:YYYY-MM-DD',
+            '10' => 'required|date_format:YYYY-MM-DD',
         ];
     }
 }
