@@ -27,6 +27,7 @@ class warranty_SystemImport implements ToModel, WithValidation
                     'shipped_qty'    => $row[5],
                     'invoice'    => $row[6],
                     'customer'    => $row[7],
+                  dd($row[8]);
                     'shipped_date'    => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[8])->format('Y-m-d'),
                     'location'    => $row[9],
                     'expired_date'    => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[10])->format('Y-m-d'),
