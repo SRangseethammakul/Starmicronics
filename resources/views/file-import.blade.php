@@ -1,14 +1,16 @@
 @extends('layouts.backend')
 @section('content')
     @if (isset($failures))
-        <div class="alert alert-danger" role="alert">
-            <strong>Errors:</strong>
-            <ul>
-                @foreach ($failures as $error)
+       <div class="alert alert-danger" role="alert">
+          <strong>Errors:</strong>
+          <ul>
+             @foreach ($failures as $failure)
+                @foreach ($failure->errors() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
-            </ul>
-        </div>
+             @endforeach
+          </ul>
+       </div>
     @endif
     <!-- Content Header (Page header) -->
     <div class="content-header">
