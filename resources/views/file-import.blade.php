@@ -1,17 +1,14 @@
 @extends('layouts.backend')
 @section('content')
-    @if (isset($failures))
-       <div class="alert alert-danger" role="alert">
-          <strong>Errors:</strong>
-          <ul>
-             @foreach ($failures as $failure)
-                @foreach ($failure->errors() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-             @endforeach
-          </ul>
-       </div>
-    @endif
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     <!-- Content Header (Page header) -->
     <div class="content-header">
     <h1 class="m-0 text-dark">Import Excel</h1>
