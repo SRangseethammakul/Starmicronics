@@ -48,8 +48,8 @@ class warranty_SystemImport implements ToModel ,WithValidation
     public function customValidationAttributes()
     {
         return [
-            '8.numeric' => 'email',
-            '10.numeric' => '10 email'
+            '8' => 'email',
+            '10' => '10 email'
         ];
     }
     
