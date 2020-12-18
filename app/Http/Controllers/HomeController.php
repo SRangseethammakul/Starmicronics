@@ -44,7 +44,8 @@ class HomeController extends Controller
         $request->validate([
             'file' => 'required|file|mimes:xls,xlsx'
         ],[
-            'file.mimes' => 'xls, xlsx only'
+            'file.mimes' => 'xls, xlsx only',
+            'file.required' => 'Required'
         ]);
         Excel::import(new UsersImport, $request->file('file')->store('temp'));
         return redirect()->route('role.index')->with('feedback' ,'บันทึกข้อมูลเรียบร้อยแล้ว');
