@@ -4,9 +4,12 @@ namespace App\Imports;
 
 use App\warranty_system;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\WithValidation;
 
-class warranty_SystemImport implements ToModel
+class warranty_SystemImport implements ToModel, WithValidation
 {
+    use Importable;
     /**
     * @param array $row
     *
@@ -33,5 +36,11 @@ class warranty_SystemImport implements ToModel
         {
             return view ('file-import', compact('failures'));
         }
+    }
+    public function rules(): array
+    {
+        return [
+            '8' => 'required|date_format:YYYY-MM-DD',
+        ];
     }
 }
