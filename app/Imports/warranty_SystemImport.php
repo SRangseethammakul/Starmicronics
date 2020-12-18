@@ -41,8 +41,8 @@ class warranty_SystemImport implements ToModel ,WithValidation
     public function rules(): array
     {
         return [
-            '8' => 'required|numeric',
-            '10' => 'required|numeric',
+            '8' => 'required,numeric',
+            '10' => 'required,numeric',
         ];
     }
     public function customValidationAttributes()
