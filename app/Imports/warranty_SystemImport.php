@@ -18,6 +18,7 @@ class warranty_SystemImport implements ToModel, WithValidation
     public function model(array $row)
     {
         try{
+            dd($row);
               return new warranty_system([
                     'serial_number'     => $row[0],
                     'good_group'    => $row[1],
