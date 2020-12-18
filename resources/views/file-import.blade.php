@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 @section('content')
-    @if ($failures)
+    @if (isset($failures))
         <div class="alert alert-danger" role="alert">
             <strong>Errors:</strong>
             <ul>
