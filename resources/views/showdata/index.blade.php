@@ -10,7 +10,7 @@
         <div class="m-b-15">
             <div class="row">
                 <div class="col-auto mr-auto">
-                    {{-- <button type="button" id="btn-export-xlsx" class="btn btn-dark">Excel with checkbox</button> --}}
+                    <button type="button" id="btn-export-xlsx" class="btn btn-dark">Excel with checkbox</button>
                     <a href="{{ route('export.excel')}}">
                         <button type="button" id="btn-export-xlsx" class="btn btn-dark">Import Excel</button>
                     </a>
