@@ -7,9 +7,9 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\WithValidation;
 
-class warranty_SystemImport implements ToModel //,WithValidation
+class warranty_SystemImport implements ToModel ,WithValidation
 {
-//     use Importable;
+     use Importable;
     /**
     * @param array $row
     *
@@ -18,7 +18,6 @@ class warranty_SystemImport implements ToModel //,WithValidation
     public function model(array $row)
     {
         try{
-            dd(intval($row[8]));
               return new warranty_system([
                     'serial_number'     => $row[0],
                     'good_group'    => $row[1],
@@ -38,13 +37,13 @@ class warranty_SystemImport implements ToModel //,WithValidation
             return view ('file-import', compact('failures'));
         }
     }
-    /*
+    
     public function rules(): array
     {
         return [
-            '8' => 'required|date_format:m/d/Y',
-            '10' => 'required|date_format:m/d/Y',
+            '8' => 'required|numeric',
+            '10' => 'required|numeric',
         ];
     }
-    */
+    
 }
