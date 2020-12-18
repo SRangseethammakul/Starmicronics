@@ -45,5 +45,9 @@ class warranty_SystemImport implements ToModel ,WithValidation
             '10' => 'required|numeric',
         ];
     }
+    public function customValidationAttributes()
+    {
+        return ['8' => 'email'];
+    }
     
 }
