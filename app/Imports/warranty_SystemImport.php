@@ -31,7 +31,7 @@ class warranty_SystemImport implements ToModel
             ]);
         }catch (\Maatwebsite\Excel\Validators\ValidationException $failures)
         {
-            return view ('welcome', compact('failures'));
+            return view ('file-import', compact('failures'));
         }
     }
 }
