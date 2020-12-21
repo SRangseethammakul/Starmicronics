@@ -84,6 +84,7 @@
                                 <i class="nav-icon fas fa-table"></i> <p>Data Table </p></a>
                         </li>
                         @role('Admin|Staff')
+                        {{--
                         <li class="nav-item">
                             <a href="{{ route('export.excel')}}" class="nav-link">
                                 <i class="nav-icon fas fa-file-excel"></i> <p>Import Excel</p></a>
@@ -92,6 +93,7 @@
                             <a href="{{ route('file-export')}}" class="nav-link">
                                 <i class="nav-icon fas fa-file-excel"></i> <p>Export Excel</p></a>
                         </li>
+                        --}}
                         @endrole
                         @role('Admin')
                         <li class="nav-item">
