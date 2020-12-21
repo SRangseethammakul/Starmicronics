@@ -9,6 +9,7 @@
     <div class="container-fluid">
         <div class="m-b-15">
             <div class="row">
+                @role('Admin|Staff')
                 <div class="col-auto mr-auto">
                     <button type="button" id="btn-export-xlsx" class="btn btn-dark">Excel with checkbox</button>
                     <a href="{{ route('export.excel')}}">
@@ -18,6 +19,7 @@
                         <button type="button" id="btn-export-xlsx" class="btn btn-dark">Export Excel</button>
                     </a>
                 </div>
+                @endrole
                 <div class="col-auto ml-auto">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> <i
                             class="fas fa-filter"></i> Filter</button>
