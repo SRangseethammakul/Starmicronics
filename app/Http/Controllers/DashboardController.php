@@ -50,7 +50,7 @@ class DashboardController extends Controller
             $end_date = Carbon::createFromFormat('d/m/Y', $request->end_date);
             $datas->where('shipped_date', '>=', $start_date->format('Y-m-d'))->where('shipped_date', '<=', $end_date->addDays(1)->format('Y-m-d'));
         }
-        $datas = $datas->get()->chunk(300);
+        $datas = $datas->get();
         dd($datas);
         return view('showdata.index',[
             'datas' => $datas,
