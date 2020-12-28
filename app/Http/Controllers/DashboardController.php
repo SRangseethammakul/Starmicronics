@@ -36,6 +36,7 @@ class DashboardController extends Controller
     public function showData(Request $request)
     {
         $datas = warranty_system::where('serial_number', 'not like', '%NO INFO%');
+        dd($datas->count());
         $customers = DB::select("SELECT * FROM `warranty_systems` GROUP BY customer");
         if($request->customer){
             $datas = $datas->where('customer', $request->customer);
