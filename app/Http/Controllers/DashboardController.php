@@ -36,7 +36,6 @@ class DashboardController extends Controller
     public function showData(Request $request)
     {
         $datas = warranty_system::where('serial_number', 'not like', '%NO INFO%');
-        dd($datas->count());
         $customers = DB::select("SELECT * FROM `warranty_systems` GROUP BY customer");
         if($request->customer){
             $datas = $datas->where('customer', $request->customer);
@@ -52,6 +51,7 @@ class DashboardController extends Controller
             $datas->where('shipped_date', '>=', $start_date->format('Y-m-d'))->where('shipped_date', '<=', $end_date->addDays(1)->format('Y-m-d'));
         }
         $datas = $datas->get()->chunk(300);
+        dd($datas);
         return view('showdata.index',[
             'datas' => $datas,
             'customers' => $customers
