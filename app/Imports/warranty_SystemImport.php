@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 
-class warranty_SystemImport implements ToModel ,WithValidation, WithChunkReading
+class warranty_SystemImport implements ToModel ,WithValidation, WithBatchInserts, WithChunkReading
 {
      use Importable;
     /**
