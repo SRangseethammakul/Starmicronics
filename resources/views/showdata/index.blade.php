@@ -39,6 +39,7 @@
                             <th scope="col">Good Description</th>
                             <th scope="col">Customer</th>
                             <th scope="col">Shipped Date</th>
+                            <th scope="col">EXP Date</th>
                             <th scope="col">Warranty</th>
                         </tr>
                     </thead>
@@ -54,6 +55,7 @@
                             <td>{{ $m->good_description }}</td>
                             <td>{{ $m->customer }}</td>
                             <td>{{ $m->shipped_date }}</td>
+                            <td>{{ $m->expired_date ? $m->expired_date : "No Date" }}</td>
                             <td>{{ $m->Warranty }}</td>
                         </tr>    
                         @endforeach
