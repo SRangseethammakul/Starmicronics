@@ -6,6 +6,7 @@ use App\warranty_system;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\WithValidation;
+use Maatwebsite\Excel\Concerns\RemembersRowNumber;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 
@@ -20,6 +21,7 @@ class warranty_SystemImport implements ToModel ,WithValidation, WithBatchInserts
     public function model(array $row)
     {
         try{
+            $currentRowNumber = $this->getRowNumber();
               return new warranty_system([
                     'serial_number'     => $row[0],
                     'good_group'    => $row[1],
