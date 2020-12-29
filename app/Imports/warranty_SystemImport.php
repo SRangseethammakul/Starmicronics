@@ -19,6 +19,13 @@ class warranty_SystemImport implements ToModel ,WithValidation, WithBatchInserts
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+    public function __construct()
+    {
+        ini_set('post_max_size', '256M');
+        ini_set('upload_max_filesize', '256M');
+        ini_set('max_execution_time', '36000');
+        ini_set('memory_limit', '2048M');
+    }
     public function model(array $row)
     {
         try{
