@@ -54,7 +54,7 @@ class warranty_SystemImport implements ToModel ,WithValidation, WithBatchInserts
             'required' => 'required',
             'numeric' => 'numeric'
         ];
-    }`
+    }
     
     public function batchSize(): int
     {
