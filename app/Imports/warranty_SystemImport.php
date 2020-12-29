@@ -6,10 +6,8 @@ use App\warranty_system;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\WithValidation;
-use Maatwebsite\Excel\Concerns\WithBatchInserts;
-use Maatwebsite\Excel\Concerns\WithChunkReading;
 
-class warranty_SystemImport implements ToModel ,WithValidation, WithBatchInserts, WithChunkReading
+class warranty_SystemImport implements ToModel ,WithValidation
 {
      use Importable;
     /**
@@ -53,15 +51,4 @@ class warranty_SystemImport implements ToModel ,WithValidation, WithBatchInserts
             'numeric' => 'numeric'
         ];
     }
-    
-    public function batchSize(): int
-    {
-        return 10000;
-    }
-    
-    public function chunkSize(): int
-    {
-        return 10000;
-    }
-    
 }
