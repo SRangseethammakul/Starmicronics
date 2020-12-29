@@ -40,19 +40,6 @@ class warranty_SystemImport implements ToModel ,WithValidation, WithBatchInserts
         }
     }
     
-    public function rules(): array
-    {
-        return [
-            '8' => 'required|numeric'
-        ];
-    }
-    public function customValidationAttributes()
-    {
-        return [
-            'required' => 'required',
-            'numeric' => 'numeric'
-        ];
-    }
     public function batchSize(): int
     {
         return 10000;
