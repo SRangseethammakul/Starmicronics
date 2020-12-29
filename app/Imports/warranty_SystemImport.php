@@ -54,12 +54,12 @@ class warranty_SystemImport implements ToModel ,WithValidation, WithChunkReading
     }
     public function batchSize(): int
     {
-        return 1000;
+        return 10000;
     }
     
     public function chunkSize(): int
     {
-        return 1000;
+        return 10000;
     }
     
 }
