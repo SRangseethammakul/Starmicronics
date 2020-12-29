@@ -13,23 +13,14 @@ use Maatwebsite\Excel\Concerns\WithChunkReading;
 class warranty_SystemImport implements ToModel ,WithValidation, WithBatchInserts, WithChunkReading
 {
      use Importable;
-     use RemembersRowNumber;
     /**
     * @param array $row
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
-    public function __construct()
-    {
-        ini_set('post_max_size', '256M');
-        ini_set('upload_max_filesize', '256M');
-        ini_set('max_execution_time', '36000');
-        ini_set('memory_limit', '2048M');
-    }
     public function model(array $row)
     {
         try{
-            $currentRowNumber = $this->getRowNumber();
               return new warranty_system([
                     'serial_number'     => $row[0],
                     'good_group'    => $row[1],
