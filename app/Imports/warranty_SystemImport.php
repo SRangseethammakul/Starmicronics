@@ -13,6 +13,7 @@ use Maatwebsite\Excel\Concerns\WithChunkReading;
 class warranty_SystemImport implements ToModel ,WithValidation, WithBatchInserts, WithChunkReading
 {
      use Importable;
+     use RemembersRowNumber;
     /**
     * @param array $row
     *
