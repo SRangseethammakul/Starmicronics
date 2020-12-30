@@ -126,18 +126,7 @@
             "iDisplayLength": 20,
             "language": {
                 "info": "Showing _START_ to _END_ total _TOTAL_",
-            },
-              "columns": [
-                null,
-                null,
-                null,
-                { "width": "10%" },
-                null,
-                null,
-                null,
-                null,
-                null
-              ]
+            }
         });
     });
     $(".datepicker").datepicker({
