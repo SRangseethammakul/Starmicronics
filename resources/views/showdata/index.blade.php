@@ -55,7 +55,7 @@
                             <td>{{ $m->good_description }}</td>
                             <td>{{ $m->customer }}</td>
                             <td>{{ $m->shipped_date }}</td>
-                            <td>{{ $m->Warranty == 'No Warranty' ? "DATE" : "No Date" }}</td>
+                            <td>{{ $m->Warranty == 'Under Warranty' ? "DATE" : "No Date" }}</td>
                             <td>{{ $m->Warranty }}</td>
                         </tr>    
                         @endforeach
