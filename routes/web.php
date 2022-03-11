@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'HomeController@index');
+Route::get('/callData', 'AjaxController@callData');
+Route::get('/checkData', 'AjaxController@checkData');
 
 // Route::post('file-import', 'HomeController@fileImport')->name('file-import');
 // Route::get('file-export', 'HomeController@fileExport')->name('file-export');
